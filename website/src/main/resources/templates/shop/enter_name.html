@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.premium.enter_name.title}"/>
+            <p class="lead" th:text="#{page.premium.enter_name.subtitle}"/>
+        </div>
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.premium.enter_name.packagename}"/>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h1 class="card-title pricing-card-title"
+                        th:utext="#{page.premium.enter_name.season(${premium_price})}">
+                        14.99€ <small class="text-muted"
+                                      th:text="#{page.premium.enter_name.season}"/>
+                    </h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li th:text="#{page.premium.enter_name.advantage1}"/>
+                        <li th:text="#{page.premium.enter_name.advantage2}"/>
+                        <li th:text="#{page.premium.enter_name.advantage3}"/>
+                        <li th:text="#{page.premium.enter_name.advantage4}"/>
+                        <li th:text="#{page.premium.enter_name.advantage5}"/>
+                        <li th:utext="#{page.premium.enter_name.advantage6}"/>
+                    </ul>
+                    <form action="/premium" class="form-signin mt-auto" id="form" method="POST">
+                        <div class="form-label-group">
+                            <input autofocus="" class="form-control" name="username"
+                                   required="true" th:placeholder="#{page.premium.enter_name.placeholder}"
+                                   type="username">
+                        </div>
+                        <div class="checkbox mb-3 mt-3">
+                            <label>
+                                <input name="acceptAgb" required="true" style="margin-right: 5px"
+                                       th:text="#{page.premium.enter_name.agb}" type="checkbox"/>
+                            </label>
+                        </div>
+                        <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+                        <button class="btn btn-lg btn-primary btn-block"
+                                th:text="#{page.premium.enter_name.continue_paypal}"
+                                type="submit"/>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.premium.enter_name.packagename2}"/>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h1 class="card-title pricing-card-title"
+                        th:utext="#{page.premium.enter_name.perpiece(${booster_price})}">
+                        14.99€ <small class="text-muted">/ per piece</small>
+                    </h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li th:text="#{page.premium.enter_name.booster_advantage1}"/>
+                        <li th:text="#{page.premium.enter_name.booster_advantage2}"/>
+                        <li th:text="#{page.premium.enter_name.booster_advantage3}"/>
+                    </ul>
+                    <form action="/booster" class="form-signin mt-auto" id="form1" method="POST">
+                        <div class="form-label-group">
+                            <input autofocus="" class="form-control" name="username"
+                                   required="true" th:placeholder="#{page.premium.enter_name.placeholder}"
+                                   type="username">
+                        </div>
+                        <div class="checkbox mb-3 mt-3">
+                            <label>
+                                <input name="acceptAgb" required="true" style="margin-right: 5px"
+                                       th:text="#{page.premium.enter_name.agb}" type="checkbox"/>
+                            </label>
+                        </div>
+                        <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+                        <button class="btn btn-lg btn-primary btn-block"
+                                th:text="#{page.premium.enter_name.continue_paypal}"
+                                type="submit"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+
+<script>
+    jQuery('form').submit(function () {
+        jQuery(this).unbind('submit'); // unbind this submit handler first and ...
+        jQuery(this).submit(function () { // added the new submit handler (that does nothing)
+            return false;
+        });
+        console.log('submitting form'); // only for testing purposes
+    });
+    jQuery('form1').submit(function () {
+        jQuery(this).unbind('submit'); // unbind this submit handler first and ...
+        jQuery(this).submit(function () { // added the new submit handler (that does nothing)
+            return false;
+        });
+        console.log('submitting form'); // only for testing purposes
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+
+    <img src="/res/arterion_banner_main.png" width="100%">
+    </img>
+
+    <p style="background-color: rgb(52, 58, 64); color: white; text-align: center; font-weight: bold"
+       th:text="#{page.home.belowheader}"/>
+
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.home.welcome}"/>
+            <p class="lead" th:text="#{page.home.welcomesub}"/>
+        </div>
+        <div class="card-deck mb-3 mt-2 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.home.card1}"/>
+                </div>
+                <div class="card-body">
+                    <p class="mt-2 mb-2" th:text="#{page.home.text1}"/>
+                    <a class="btn btn-lg btn-primary btn-block mb-2 mt-2" href="/wiki" th:text="#{page.home.go1}"/>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.home.card2}"/>
+                </div>
+                <div class="card-body">
+                    <p class="mt-2 mb-2" th:text="#{page.home.text2}"/>
+                    <a class="btn btn-lg btn-primary btn-block mb-2 mt-2" href="/clientmod" th:text="#{page.home.go2}"/>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.home.card3}"/>
+                </div>
+                <div class="card-body">
+                    <p class="mt-2 mb-2" th:text="#{page.home.text3}"/>
+                    <a class="btn btn-lg btn-primary btn-block mb-2 mt-2" href="/stats" th:text="#{page.home.go3}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

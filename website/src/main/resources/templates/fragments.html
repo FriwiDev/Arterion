@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:fragment="bootstrap-style">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+        <!-- Bootstrap CSS -->
+        <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+
+        <style>
+            .nav-scroller {
+                position: relative;
+                z-index: 2;
+                height: 2.75rem;
+                overflow-y: hidden;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .nav-scroller .nav {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+                padding-bottom: 1rem;
+                margin-top: -1px;
+                overflow-x: auto;
+                color: rgba(255, 255, 255, .75);
+                text-align: center;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .nav-underline .nav-link {
+                padding-top: .75rem;
+                padding-bottom: .75rem;
+                font-size: .875rem;
+                color: #6c757d;
+                display: inline-block;
+                text-align: center;
+            }
+
+            .nav-underline .nav-link:hover {
+                color: #007bff;
+            }
+
+            .nav-underline .active {
+                font-weight: 500;
+                color: #343a40;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+
+            p:not(.lead) {
+                text-align: justify
+            }
+        </style>
+    </div>
+    <div th:fragment="chartjs">
+        <script crossorigin="anonymous" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI="
+                src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    </div>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" th:fragment="header">
+    <a class="navbar-brand" href="/">
+        <img src="/res/arterion_small.png" style="height: 40px"/>
+    </a>
+    <div class="navbar-collapse" id="arterionNavbar">
+        <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/wiki" th:text="#{nav.wiki}">Wiki</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/clientmod" th:text="#{nav.clientmod}">Client Mod</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/shop" th:text="#{nav.shop}">Premium</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/vote" th:text="#{nav.vote}">Vote</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/stats" th:text="#{nav.stats}">Statistiken</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active nav-link" sec:authorize="isAuthenticated()"
+                    th:text="#{nav.loggedinas(${#authentication.name})}">
+                    Angemeldet als Friwi
+                </li>
+                <li class="nav-item active">
+                    <form action="/login" class="form-inline my-2 my-lg-0" sec:authorize="!isAuthenticated()">
+                        <button class="btn btn-outline-success my-2 my-sm-0" th:text="#{nav.login}" type="submit">
+                            Login
+                        </button>
+                    </form>
+                    <form action="/logout" class="form-inline my-2 my-lg-0" sec:authorize="isAuthenticated()">
+                        <button class="btn btn-outline-danger my-2 my-sm-0" th:text="#{nav.logout}" type="submit">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="nav-scroller bg-white shadow-sm" th:fragment="statsbar">
+    <div style="justify-content: center; margin: 0; padding: 0; display: flex">
+        <nav class="nav nav-underline">
+            <a class="nav-link"
+               href="/stats/guilds"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/guild') ? 'active':''}" th:text="#{nav.stats.guilds}"/>
+            <a class="nav-link"
+               href="/stats/players"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/player') ? 'active':''}" th:text="#{nav.stats.players}"/>
+            <a class="nav-link"
+               href="/stats/guild_fights"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/guild_fight') ? 'active':''}" th:text="#{nav.stats.guild_fights}"/>
+            <a class="nav-link"
+               href="/stats/artefact_fights"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/artefact_fight') ? 'active':''}" th:text="#{nav.stats.artefact_fights}"/>
+            <a class="nav-link"
+               href="/stats/capture_point_fights"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/capture_point_fight') ? 'active':''}" th:text="#{nav.stats.capture_point_fights}"/>
+            <a class="nav-link"
+               href="/stats/morgoth_dungeon_fights"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/morgoth_dungeon_fight') ? 'active':''}" th:text="#{nav.stats.morgoth_dungeon_fights}"/>
+            <a class="nav-link"
+               href="/stats/arena_fights"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/arena_fight') ? 'active':''}" th:text="#{nav.stats.arena_fights}"/>
+            <a class="nav-link"
+               href="/stats/placed_blocks"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/placed_block') ? 'active':''}" th:text="#{nav.stats.placed_blocks}"/>
+            <a class="nav-link"
+               href="/stats/mined_blocks"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/mined_block') ? 'active':''}"
+               th:text="#{nav.stats.mined_blocks}"/>
+            <a class="nav-link"
+               href="/stats/killed_entities"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/stats/killed_entit') ? 'active':''}"
+               th:text="#{nav.stats.killed_entities}"/>
+        </nav>
+    </div>
+</div>
+
+<div class="nav-scroller bg-white shadow-sm" th:fragment="wikibar">
+    <div style="justify-content: center; margin: 0; padding: 0; display: flex">
+        <nav class="nav nav-underline">
+            <a class="nav-link"
+               href="/wiki/index"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/wiki/index') ? 'active':''}"
+               th:text="#{nav.wiki.index}"/>
+            <a class="nav-link"
+               href="/wiki/classes"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/wiki/classes') ? 'active':''}"
+               th:text="#{nav.wiki.classes}"/>
+            <a class="nav-link"
+               href="/wiki/guilds_groups_players"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/wiki/guilds_groups_players') ? 'active':''}"
+               th:text="#{nav.wiki.guilds_groups_players}"/>
+            <a class="nav-link"
+               href="/wiki/guild_fights"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/wiki/guild_fights') ? 'active':''}"
+               th:text="#{nav.wiki.guild_fights}"/>
+            <a class="nav-link"
+               href="/wiki/marketplace"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/wiki/marketplace') ? 'active':''}"
+               th:text="#{nav.wiki.marketplace}"/>
+            <a class="nav-link"
+               href="/wiki/pvp_zone"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/wiki/pvp_zone') ? 'active':''}"
+               th:text="#{nav.wiki.pvp_zone}"/>
+            <a class="nav-link"
+               href="/wiki/recipes"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/wiki/recipes') ? 'active':''}"
+               th:text="#{nav.wiki.recipes}"/>
+            <a class="nav-link"
+               href="/wiki/rules"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/wiki/rules') ? 'active':''}"
+               th:text="#{nav.wiki.rules}"/>
+        </nav>
+    </div>
+</div>
+
+<nav aria-label="Page navigation" style="display: flex; flex-direction: column; align-items: flex-end;"
+     th:fragment="pagination">
+    <ul class="pagination"
+        th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+        <li class="page-item" th:classappend="${page<=1 ? 'disabled' : ''}">
+            <a aria-label="Previous" class="page-link"
+               th:href="${page<=1 ? '#' : urlBuilder.replaceQueryParam('page', 1).toUriString()}">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item" th:if="${page>4 && maxpage<page+1}"><a class="page-link"
+                                                                     th:href="${urlBuilder.replaceQueryParam('page', page-4).toUriString()}"
+                                                                     th:text="${page-4}"/></li>
+        <li class="page-item" th:if="${page>3 && maxpage<page+2}"><a class="page-link"
+                                                                     th:href="${urlBuilder.replaceQueryParam('page', page-3).toUriString()}"
+                                                                     th:text="${page-3}"/></li>
+        <li class="page-item" th:if="${page>2}"><a class="page-link"
+                                                   th:href="${urlBuilder.replaceQueryParam('page', page-2).toUriString()}"
+                                                   th:text="${page-2}"/></li>
+        <li class="page-item" th:if="${page>1}"><a class="page-link"
+                                                   th:href="${urlBuilder.replaceQueryParam('page', page-1).toUriString()}"
+                                                   th:text="${page-1}"/></li>
+        <li class="page-item active"><a class="page-link" href="#" th:text="${page}"/></li>
+        <li class="page-item" th:if="${maxpage>=page+1}"><a class="page-link"
+                                                            th:href="${urlBuilder.replaceQueryParam('page', page+1).toUriString()}"
+                                                            th:text="${page+1}"/></li>
+        <li class="page-item" th:if="${maxpage>=page+2}"><a class="page-link"
+                                                            th:href="${urlBuilder.replaceQueryParam('page', page+2).toUriString()}"
+                                                            th:text="${page+2}"/></li>
+        <li class="page-item" th:if="${maxpage>=page+3 && page<=2}"><a class="page-link"
+                                                                       th:href="${urlBuilder.replaceQueryParam('page', page+3).toUriString()}"
+                                                                       th:text="${page+3}"/></li>
+        <li class="page-item" th:if="${maxpage>=page+4 && page<=1}"><a class="page-link"
+                                                                       th:href="${urlBuilder.replaceQueryParam('page', page+4).toUriString()}"
+                                                                       th:text="${page+4}"/></li>
+        <li class="page-item" th:classappend="${page>=maxpage ? 'disabled' : ''}">
+            <a aria-label="Next"
+               class="page-link"
+               th:href="${page>=maxpage ? '#' : urlBuilder.replaceQueryParam('page', maxpage).toUriString()}">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<footer class="container" th:fragment="footer">
+    <hr>
+    <p>&copy; Friwi 2020 <a href="/about" th:text="#{footer.about}">Impressum</a> <a
+            href="https://www.youtube.com/channel/UCn-8Ys5qyhxJt8ZacJWn2DQ" th:text="#{footer.youtube}">YouTube</a>
+        <a href="https://discord.gg/7baPkk7" th:text="#{footer.discord}">Discord</a>
+        <a href="/wiki/rules" th:text="#{footer.rules}">Regeln</a></p>
+</footer>
+
+<div th:fragment="bootstrap-script">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script crossorigin="anonymous"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</div>
+
+<th th:fragment="statheader">
+    <a style="color: black"
+       th:href="${urlBuilder.replaceQueryParam('sort', key).replaceQueryParam('order', sort.equals(key) ? (order.equals('asc') ? 'desc' : 'asc') : 'desc').replaceQueryParam('page', 1).toUriString()}"
+       th:text="#{${base+'.'+key}} + ${sort.equals(key) ? (order.equals('asc') ? '&#9652;' : '&#9662;') : ''}"
+       th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}"/>
+</th>
+
+<tbody th:fragment="statbody">
+<tr th:if="${content.isEmpty()}">
+    <td colspan="42" style="color: #AAAAAA; text-align: center" th:text="#{page.stats.noentries}"></td>
+</tr>
+<tr th:each="entry : ${content}">
+    <td><a style="color: black" th:href="${entry.link}" th:text="${entry.number}"/></td>
+    <td th:each="msg : ${entry.getContent()}"><a style="color: black" th:href="${entry.link}" th:text="${msg}"/></td>
+</tr>
+</tbody>
+
+<form action="" class="form-inline my-2 my-md-0"
+      method="GET"
+      style="display: flex; flex-direction: column; align-items: flex-end;" th:fragment="statsearch">
+    <input class="form-control mb-2" id="query" name="query" th:placeholder="#{page.stats.search}" th:value="${query}"/>
+</form>
+</body>
+</html>

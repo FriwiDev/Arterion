@@ -1,0 +1,10 @@
+{
+  "uuid": "%uuid%",
+  "name": "Arterion.de Server Support",
+  "mainClass": "me.friwi.arterion.client.LabyAddon",
+  "description": "Custom Interfaces for Arterion.de Guild-PvP Server!",
+  "version": 1,
+  "author": "Friwi",
+  "category": 3,
+  "icon": "http://friwi.me/mod-icon.png"
+}

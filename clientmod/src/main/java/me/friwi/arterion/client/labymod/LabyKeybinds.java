@@ -1,0 +1,35 @@
+package me.friwi.arterion.client.labymod;
+
+import me.friwi.arterion.client.gui.util.ChatColor;
+import me.friwi.arterion.client.keybinds.KeybindManager;
+import net.labymod.ingamechat.tools.autotext.AutoTextKeyBinds.AutoText;
+import net.labymod.main.LabyMod;
+
+public class LabyKeybinds {
+	public static String getLabyKeybind(int slot, String skillName) {
+		for(AutoText keybind : LabyMod.getInstance().getChatToolManager().getAutoTextKeyBinds()) {
+			String command = keybind.getMessage();
+			if(command.toLowerCase().startsWith("/skillslot ")) {
+				String slotStr = command.substring("/skillslot ".length());
+				if(slotStr.equals(slot+"")) {
+					String key = ChatColor.stripColor(KeybindManager.getKeyText(keybind.getKeyCode()));
+					if(keybind.isKeyAlt())key="ALT+"+key;
+					if(keybind.isKeyShift())key="SHIFT+"+key;
+					if(keybind.isKeyCtrl())key="CTRL+"+key;
+					return key;
+				}
+			}
+			if(command.toLowerCase().startsWith("/skill ")) {
+				String nameStr = command.substring("/skill ".length());
+				if(nameStr.replace("_", " ").equalsIgnoreCase(ChatColor.stripColor(skillName))) {
+					String key = ChatColor.stripColor(KeybindManager.getKeyText(keybind.getKeyCode()));
+					if(keybind.isKeyAlt())key="ALT+"+key;
+					if(keybind.isKeyShift())key="SHIFT+"+key;
+					if(keybind.isKeyCtrl())key="CTRL+"+key;
+					return key;
+				}
+			}
+		}
+		return null;
+	}
+}

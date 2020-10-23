@@ -1,0 +1,6 @@
+.idea*
+target*
+out*
+bin*
+test_server*
+plugin.iml

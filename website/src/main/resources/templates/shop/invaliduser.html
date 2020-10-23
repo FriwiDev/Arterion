@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div class="container">
+        <div class="alert alert-danger" role="alert" style="margin-top: 15px">
+            <h4 class="alert-heading" th:text="#{page.premium.invaliduser.title}"/>
+            <p th:text="#{page.premium.invaliduser.text}"/>
+            <hr>
+            <a class="btn btn-primary" href="/shop" th:text="#{page.premium.invaliduser.action}"/>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

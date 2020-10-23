@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: wikibar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.wiki.rules.title}"/>
+            <p class="lead" th:text="#{page.wiki.rules.subtitle}"/>
+        </div>
+        <h4 th:text="#{page.wiki.rules.broad.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.rules.broad.one}"/>
+        <p th:text="#{page.wiki.rules.broad.two}"/>
+        <p th:text="#{page.wiki.rules.broad.three}"/>
+        <p th:text="#{page.wiki.rules.broad.four}"/>
+        <p th:text="#{page.wiki.rules.broad.five}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.rules.forbidden.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.rules.forbidden.one}"/>
+        <p th:text="#{page.wiki.rules.forbidden.two}"/>
+        <p th:text="#{page.wiki.rules.forbidden.three}"/>
+        <p th:text="#{page.wiki.rules.forbidden.four}"/>
+        <p th:text="#{page.wiki.rules.forbidden.five}"/>
+        <p th:text="#{page.wiki.rules.forbidden.six}"/>
+        <p th:text="#{page.wiki.rules.forbidden.seven}"/>
+        <p th:text="#{page.wiki.rules.forbidden.eight}"/>
+        <p th:text="#{page.wiki.rules.forbidden.nine}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.rules.modifications.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.rules.modifications.one}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.rules.communication.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.rules.communication.one}"/>
+        <p th:text="#{page.wiki.rules.communication.two}"/>
+        <p th:text="#{page.wiki.rules.communication.three}"/>
+        <p th:utext="#{page.wiki.rules.communication.note}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.rules.building.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.rules.building.one}"/>
+        <p th:text="#{page.wiki.rules.building.two}"/>
+        <p th:text="#{page.wiki.rules.building.three}"/>
+        <p th:text="#{page.wiki.rules.building.four}"/>
+        <p th:text="#{page.wiki.rules.building.five}"/>
+        <p th:text="#{page.wiki.rules.building.six}"/>
+        <p th:text="#{page.wiki.rules.building.seven}"/>
+        <p th:text="#{page.wiki.rules.building.eight}"/>
+        <br/>
+        <p><i th:text="#{page.wiki.rules.last_update}"/></p>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

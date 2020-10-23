@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: wikibar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.wiki.guilds_groups_players.title}"/>
+            <p class="lead" th:text="#{page.wiki.guilds_groups_players.subtitle}"/>
+        </div>
+        <h4 th:text="#{page.wiki.guilds_groups_players.founding.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.guilds_groups_players.founding.one(${guild_price})}"/>
+        <p th:text="#{page.wiki.guilds_groups_players.founding.two}"/>
+        <p th:text="#{page.wiki.guilds_groups_players.founding.three}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.guilds_groups_players.guildclaim.title}"/>
+        <hr/>
+        <img src="/res/wiki/guild_claim.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <p th:text="#{page.wiki.guilds_groups_players.guildclaim.one}"/>
+        <p th:text="#{page.wiki.guilds_groups_players.guildclaim.two(${min_x},${max_x},${min_y},${max_y},${distance})}"/>
+        <p th:text="#{page.wiki.guilds_groups_players.guildclaim.three}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.guilds_groups_players.guildmanagement.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.guilds_groups_players.guildmanagement.one(${guild_maxmembers})}"/>
+        <p th:text="#{page.wiki.guilds_groups_players.guildmanagement.two}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.guilds_groups_players.vault.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.guilds_groups_players.vault.one}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.guilds_groups_players.locker.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.guilds_groups_players.locker.one(${drop_percent})}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.guilds_groups_players.teleport.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.guilds_groups_players.teleport.one}"/>
+        <p th:text="#{page.wiki.guilds_groups_players.teleport.two(${tpa_price})}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.guilds_groups_players.xpgoldshare.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.guilds_groups_players.xpgoldshare.one}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.guilds_groups_players.playerclaims.title}"/>
+        <hr/>
+        <img src="/res/wiki/homeblock.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <p th:text="#{page.wiki.guilds_groups_players.playerclaims.one}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.guilds_groups_players.groups.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.guilds_groups_players.groups.one}"/>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

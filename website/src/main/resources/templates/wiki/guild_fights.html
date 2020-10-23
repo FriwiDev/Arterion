@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: wikibar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.wiki.guild_fights.title}"/>
+            <p class="lead" th:text="#{page.wiki.guild_fights.subtitle}"/>
+        </div>
+        <p th:text="#{page.wiki.guild_fights.desc(${fight_dur},${fight_end})}"/>
+        <br>
+        <h4 th:text="#{page.wiki.guild_fights.siegeitems.title}"/>
+        <hr/>
+        <img src="/res/wiki/siege.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <p th:text="#{page.wiki.guild_fights.siegeitems.desc}"/>
+        <ul>
+            <li th:utext="#{page.wiki.guild_fights.siegeitems.1}"/>
+            <li th:utext="#{page.wiki.guild_fights.siegeitems.2}"/>
+            <li th:utext="#{page.wiki.guild_fights.siegeitems.3}"/>
+            <li th:utext="#{page.wiki.guild_fights.siegeitems.4}"/>
+            <li th:utext="#{page.wiki.guild_fights.siegeitems.5}"/>
+            <li th:utext="#{page.wiki.guild_fights.siegeitems.6}"/>
+            <li th:utext="#{page.wiki.guild_fights.siegeitems.7}"/>
+            <li th:utext="#{page.wiki.guild_fights.siegeitems.8}"/>
+        </ul>
+        <p th:text="#{page.wiki.guild_fights.siegeitems.one}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.guild_fights.chests.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.guild_fights.chests.desc}"/>
+        <ul>
+            <li th:utext="#{page.wiki.guild_fights.chests.1}"/>
+            <li th:utext="#{page.wiki.guild_fights.chests.2}"/>
+            <li th:utext="#{page.wiki.guild_fights.chests.3}"/>
+        </ul>
+        <p th:text="#{page.wiki.guild_fights.chests.one}"/>
+        <p th:utext="#{page.wiki.guild_fights.chests.two}"/>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <link href="/res/items.css"
+          rel="stylesheet">
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: statsbar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.stats.placed_block.title}"/>
+            <p class="lead" th:text="#{page.stats.placed_block.subtitle}"/>
+        </div>
+        <table style="border: 0px; margin-bottom: 5px">
+            <tbody>
+            <tr>
+                <td><b th:text="#{page.stats.placed_block.placed_block}"/></td>
+                <td style="padding-left: 10px">
+                    <div style="color: black; display: block" th:classappend="${blockClass}"></div>
+                </td>
+                <td>
+                    <div th:text="${blockName}"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr th:with="base='page.stats.placed_block.header'">
+                    <th>#</th>
+                    <th th:replace="fragments :: statheader(key='name')"/>
+                    <th th:replace="fragments :: statheader(key='done')"/>
+                </tr>
+                </thead>
+                <tbody th:replace="fragments :: statbody"/>
+            </table>
+        </div>
+        <nav th:replace="fragments :: pagination"/>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

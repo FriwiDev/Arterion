@@ -1,0 +1,8 @@
+name: Arterion
+version: 1.0
+api-version: 1.8
+main: me.friwi.arterion.plugin.ArterionPlugin
+description: Arterion Minecraft Server Vol. 1
+author: Friwi
+website: https://arterion.de
+depend: [Votifier]

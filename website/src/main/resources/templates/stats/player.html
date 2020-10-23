@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <link href="/res/items.css"
+          rel="stylesheet">
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: statsbar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.stats.player.title(${name})}">Spieler</h1>
+            <p class="lead" th:text="#{page.stats.player.subtitle}">Subtitel</p>
+        </div>
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.player.broad}">Allgemein</h4>
+                </div>
+                <div class="card-body">
+                    <img th:src="${face}"/>
+                    <table style="border: 0px; text-align: left; width: 100%">
+                        <tr>
+                            <td><b th:text="#{page.stats.player.broad.name}">Name: </b></td>
+                            <td style="text-align: right" th:text="${name}">Friwi</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.broad.rank}">Rang: </b></td>
+                            <td style="text-align: right" th:text="${rank}">Spieler</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.broad.active_since}">Aktiv seit: </b></td>
+                            <td style="text-align: right" th:text="${active_since}">2020-08-14</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.broad.play_time}">Spielzeit: </b></td>
+                            <td style="text-align: right" th:text="${play_time}">10d 3h 45m</td>
+                        </tr>
+                        <tr th:if="${guild} != null">
+                            <td><b th:text="#{page.stats.player.broad.guild}">Gilde: </b></td>
+                            <td style="text-align: right"><a style="color: black"
+                                                             th:href="'/stats/guild/' + ${guild.getUuid()}"
+                                                             th:text="${guild.getName()}">Avalon</a></td>
+                        </tr>
+                        <tr th:if="${guild} != null">
+                            <td><b th:text="#{page.stats.player.broad.guild_role}">Rolle in Gilde: </b></td>
+                            <td style="text-align: right" th:text="${guild_role}">Gildenleiter</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.player.progress}">Fortschritt</h4>
+                </div>
+                <div class="card-body">
+                    <table style="border: 0px; text-align: left; width: 100%">
+                        <tr>
+                            <td><b th:text="#{page.stats.player.progress.class}">Klasse: </b></td>
+                            <td style="text-align: right" th:text="${class}">Schattenläufer</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.progress.level}">Stufe: </b></td>
+                            <td style="text-align: right" th:text="${level}">100 (Prestige 20)</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.progress.xp_earned}">XP verdient: </b></td>
+                            <td style="text-align: right" th:text="${xp_earned}">67843276</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.progress.jobs}">Berufe: </b></td>
+                            <td>
+                                <table style="border: 0px; text-align: left; width: 100%">
+                                    <tr>
+                                        <td><b th:text="#{page.stats.player.progress.jobs.farmer}">Bauer: </b></td>
+                                        <td style="text-align: right" th:text="${farmer_level}">Stufe 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b th:text="#{page.stats.player.progress.jobs.woodworker}">Förster: </b>
+                                        </td>
+                                        <td style="text-align: right" th:text="${woodworker_level}">Stufe 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b th:text="#{page.stats.player.progress.jobs.fisher}">Fischer: </b></td>
+                                        <td style="text-align: right" th:text="${fisher_level}">Stufe 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b th:text="#{page.stats.player.progress.jobs.miner}">Bergarbeiter: </b>
+                                        </td>
+                                        <td style="text-align: right" th:text="${miner_level}">Stufe 1</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.player.fightstats}">Kampf-Statistiken</h4>
+                </div>
+                <div class="card-body">
+                    <table style="border: 0px; text-align: left; width: 100%">
+                        <tr>
+                            <td><b th:text="#{page.stats.player.fightstats.kills}">Kills: </b></td>
+                            <td style="text-align: right" th:text="${kills}">10</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.fightstats.deaths}">Tode: </b></td>
+                            <td style="text-align: right" th:text="${deaths}">2</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.fightstats.kd}">K/D: </b></td>
+                            <td style="text-align: right" th:text="${kd}">5</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.fightstats.damage_players}">Schaden an Spielern: </b>
+                            </td>
+                            <td style="text-align: right" th:text="${damage_players}">123243</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.fightstats.damage_entities}">Schaden an
+                                Tieren/Monstern: </b></td>
+                            <td style="text-align: right" th:text="${damage_entities}">123243</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.fightstats.damage_self}">Schaden erhalten: </b></td>
+                            <td style="text-align: right" th:text="${damage_self}">123243</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.fightstats.heal}">Gewirkte Heilung: </b></td>
+                            <td style="text-align: right" th:text="${heal}">123243</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.player.title.stats}">Weitere
+                        Statistiken</h4>
+                </div>
+                <div class="card-body">
+                    <table style="border: 0px; text-align: left; width: 100%">
+                        <tr>
+                            <td><b th:text="#{page.stats.player.stats.mined_blocks}">Abgebaute Blöcke: </b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" th:if="${mined_blocks.length} > 0">
+                                <table style="border: 0px; table-layout: fixed; width: 100%">
+                                    <tr style="text-align: center">
+                                        <td th:each="entry : ${mined_blocks}"><a style="display: block; margin: 0 auto;"
+                                                                                 th:classappend="${entry[1]}"
+                                                                                 th:href="${entry[3]}"
+                                                                                 th:title="${entry[0]}"/></td>
+                                    </tr>
+                                    <tr style="text-align: center">
+                                        <td style="text-align: center; color: black" th:each="entry : ${mined_blocks}">
+                                            <a th:href="${entry[3]}" th:text="${entry[2]}"/></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="text-align: center; color: gray" th:if="${mined_blocks.length} == 0"
+                                th:text="#{page.stats.player.stats.mined_blocks.none}"/>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.stats.placed_blocks}">Platzierte Blöcke: </b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" th:if="${placed_blocks.length} > 0">
+                                <table style="border: 0px; table-layout: fixed; width: 100%">
+                                    <tr style="text-align: center">
+                                        <td th:each="entry : ${placed_blocks}"><a
+                                                style="display: block; margin: 0 auto;" th:classappend="${entry[1]}"
+                                                th:href="${entry[3]}" th:title="${entry[0]}"/></td>
+                                    </tr>
+                                    <tr style="text-align: center">
+                                        <td style="text-align: center; color: black" th:each="entry : ${placed_blocks}">
+                                            <a th:href="${entry[3]}" th:text="${entry[2]}"/></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="text-align: center; color: gray" th:if="${placed_blocks.length} == 0"
+                                th:text="#{page.stats.player.stats.placed_blocks.none}"/>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.player.stats.killed_entities}">Getötete Lebewesen: </b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" th:if="${killed_entities.length} > 0">
+                                <table style="border: 0px; table-layout: fixed; width: 100%">
+                                    <tr style="text-align: center">
+                                        <td th:each="entry : ${killed_entities}"><a
+                                                style="display: block; margin: 0 auto;" th:classappend="${entry[1]}"
+                                                th:href="${entry[3]}" th:title="${entry[0]}"/></td>
+                                    </tr>
+                                    <tr style="text-align: center">
+                                        <td style="text-align: center; color: black"
+                                            th:each="entry : ${killed_entities}"><a th:href="${entry[3]}"
+                                                                                    th:text="${entry[2]}"/></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="text-align: center; color: gray" th:if="${killed_entities.length} == 0"
+                                th:text="#{page.stats.player.stats.killed_entities.none}"/>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.player.title.fights}">Teilgenommene
+                        Kämpfe</h4>
+                </div>
+                <div class="nav-scroller bg-white shadow-sm">
+                    <div style="justify-content: center; margin: 0; padding: 0; display: flex">
+                        <nav class="nav nav-underline"
+                             th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                            <a class="nav-link"
+                               th:classappend="${fights.equals('guild_fights') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('fights', 'guild_fights').replaceQueryParam('page', '1').toUriString()}"
+                               th:text="#{nav.stats.guild_fights_short}">Gilden</a>
+                            <a class="nav-link"
+                               th:classappend="${fights.equals('artefact_fights') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('fights', 'artefact_fights').replaceQueryParam('page', '1').toUriString()}"
+                               th:text="#{nav.stats.artefact_fights_short}">Artefakt</a>
+                            <a class="nav-link"
+                               th:classappend="${fights.equals('capture_point_fights') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('fights', 'capture_point_fights').replaceQueryParam('page', '1').toUriString()}"
+                               th:text="#{nav.stats.capture_point_fights_short}">Eroberung</a>
+                            <a class="nav-link"
+                               th:classappend="${fights.equals('morgoth_dungeon_fights') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('fights', 'morgoth_dungeon_fights').replaceQueryParam('page', '1').toUriString()}"
+                               th:text="#{nav.stats.morgoth_dungeon_fights_short}">Morgoth</a>
+                            <a class="nav-link"
+                               th:classappend="${fights.equals('arena_fights') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('fights', 'arena_fights').replaceQueryParam('page', '1').toUriString()}"
+                               th:text="#{nav.stats.arena_fights_short}">Duell</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                            <tr th:with="base='page.stats.player.fights.header'">
+                                <th>#</th>
+                                <th th:replace="fragments :: statheader(key='time')"/>
+                                <th th:replace="fragments :: statheader(key='text')"/>
+                                <th th:replace="fragments :: statheader(key='win')"/>
+                            </tr>
+                            </thead>
+                            <tbody th:replace="fragments :: statbody"/>
+                        </table>
+                    </div>
+                    <nav th:replace="fragments :: pagination"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

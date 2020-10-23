@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: wikibar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.wiki.pvp_zone.title}"/>
+            <p class="lead" th:text="#{page.wiki.pvp_zone.subtitle}"/>
+        </div>
+        <h4 th:text="#{page.wiki.pvp_zone.artefact.title}"/>
+        <hr/>
+        <img src="/res/wiki/artefact.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <p th:text="#{page.wiki.pvp_zone.artefact.one}"/>
+        <p th:text="#{page.wiki.pvp_zone.artefact.two}"/>
+        <p th:text="#{page.wiki.pvp_zone.artefact.three}"/>
+        <p th:text="#{page.wiki.pvp_zone.artefact.four}"/>
+        <br/>
+
+        <h4 th:text="#{page.wiki.pvp_zone.cap.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.pvp_zone.cap.one}"/>
+        <h5 th:text="#{page.wiki.pvp_zone.cap.graveruin.title}"/>
+        <img src="/res/wiki/graveruin.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <p th:text="#{page.wiki.pvp_zone.cap.graveruin.one(${graveruin_boost})}"/>
+        <h5 th:text="#{page.wiki.pvp_zone.cap.deserttemple.title}"/>
+        <img src="/res/wiki/deserttemple.png"
+             style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <p th:text="#{page.wiki.pvp_zone.cap.deserttemple.one(${deserttemple_boost})}"/>
+        <br/>
+
+        <h4 th:text="#{page.wiki.pvp_zone.dungeons.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.pvp_zone.dungeons.one}"/>
+        <p th:text="#{page.wiki.pvp_zone.dungeons.two}"/>
+        <p th:text="#{page.wiki.pvp_zone.dungeons.three}"/>
+        <h5 th:text="#{page.wiki.pvp_zone.dungeons.morgoth.title}"/>
+        <img src="/res/wiki/morgoth.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <p th:text="#{page.wiki.pvp_zone.dungeons.morgoth.one}"/>
+        <p th:text="#{page.wiki.pvp_zone.dungeons.morgoth.two}"/>
+        <br/>
+
+        <h4 th:text="#{page.wiki.pvp_zone.chests.title}"/>
+        <hr/>
+        <img src="/res/wiki/lootchests.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <p th:text="#{page.wiki.pvp_zone.chests.one}"/>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

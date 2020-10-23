@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: wikibar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.wiki.marketplace.title}"/>
+            <p class="lead" th:text="#{page.wiki.marketplace.subtitle}"/>
+        </div>
+        <img src="/res/wiki/marketplace.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <h4 th:text="#{page.wiki.marketplace.guild.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.marketplace.guild.one(${guild_price})}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.marketplace.home.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.marketplace.home.one(${home_price})}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.marketplace.blacksmith.title}"/>
+        <hr/>
+        <img src="/res/wiki/blacksmith.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%"/>
+        <br/>
+        <p th:text="#{page.wiki.marketplace.blacksmith.one}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.marketplace.bank.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.marketplace.bank.one}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.marketplace.siege.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.marketplace.siege.one}"/>
+        <br/>
+        <h4 th:text="#{page.wiki.marketplace.blackmarket.title}"/>
+        <hr/>
+        <p th:text="#{page.wiki.marketplace.blackmarket.one}"/>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

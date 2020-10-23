@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        .table td.cent {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: justify;
+        }
+    </style>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: wikibar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.wiki.classes.title}"/>
+            <p class="lead" th:text="#{page.wiki.classes.subtitle}"/>
+        </div>
+        <p th:text="#{page.wiki.classes.one}"/>
+        <p th:text="#{page.wiki.classes.two}"/>
+        <p th:text="#{page.wiki.classes.three}"/>
+        <h4 th:text="#{page.wiki.classes.paladin}"/>
+        <hr/>
+        <table style="border: 0px; table-layout: fixed; width: 100%">
+            <tr>
+                <td style="width: 31%"><img src="/res/wiki/classes/paladin.png"
+                                            style="max-width: 100%; max-height: 100%;"/></td>
+                <td style="width: 35%">
+                    <p style="margin: 10px" th:text="#{page.wiki.classes.paladin.desc}"></p>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.hp(${paladin_hp})}"/>
+                    <p th:utext="#{page.wiki.classes.hp0(${paladin_hp0})}"/>
+                    <p th:utext="#{page.wiki.classes.hp100(${paladin_hp100})}"/>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.mana(${paladin_mana})}"/>
+                    <p th:utext="#{page.wiki.classes.mana0(${paladin_mana0})}"/>
+                    <p th:utext="#{page.wiki.classes.mana100(${paladin_mana100})}"/>
+                </td>
+            </tr>
+        </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" style="border: 0px; table-layout: fixed; width: 100%">
+                <thead>
+                <tr>
+                    <th style="width: 6%" th:text="#{page.wiki.classes.header.icon}"/>
+                    <th style="width: 15%" th:text="#{page.wiki.classes.header.name}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.level}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.mana}"/>
+                    <th style="width: 10%" th:text="#{page.wiki.classes.header.cooldown}"/>
+                    <th style="width: 59%" th:text="#{page.wiki.classes.header.desc}"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="cent"><b th:text="#{page.wiki.classes.skill.passive}"/></td>
+                    <td class="cent" th:text="#{page.wiki.classes.paladin.passive}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_0}"/>
+                    <td class="cent">-</td>
+                    <td class="cent">-</td>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.paladin.passive.desc(${paladin_passive_0}, ${paladin_passive_1})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/0.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.heal}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_1}"/>
+                    <td class="cent" th:text="${heal_mana}"/>
+                    <td class="cent" th:text="${heal_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.heal.desc(${heal_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/4.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.paladin.2}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_2}"/>
+                    <td class="cent" th:text="${paladin_2_mana}"/>
+                    <td class="cent" th:text="${paladin_2_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.paladin.2.desc(${paladin_2_0}, ${paladin_2_1}, ${paladin_2_2})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/5.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.paladin.3}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_3}"/>
+                    <td class="cent" th:text="${paladin_3_mana}"/>
+                    <td class="cent" th:text="${paladin_3_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.paladin.3.desc(${paladin_3_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/3.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.paladin.4}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_4}"/>
+                    <td class="cent" th:text="${paladin_4_mana}"/>
+                    <td class="cent" th:text="${paladin_4_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.paladin.4.desc(${paladin_4_0}, ${paladin_4_1}, ${paladin_4_2}, ${paladin_4_3}, ${paladin_4_4})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/2.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.paladin.5}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_5}"/>
+                    <td class="cent" th:text="${paladin_5_mana}"/>
+                    <td class="cent" th:text="${paladin_5_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.paladin.5.desc(${paladin_5_0}, ${paladin_5_1})}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+
+        <h4 th:text="#{page.wiki.classes.berserk}"/>
+        <hr/>
+        <table style="border: 0px; table-layout: fixed; width: 100%">
+            <tr>
+                <td style="width: 31%"><img src="/res/wiki/classes/berserk.png"
+                                            style="max-width: 100%; max-height: 100%;"/></td>
+                <td style="width: 35%">
+                    <p style="margin: 10px" th:text="#{page.wiki.classes.berserk.desc}"></p>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.hp(${berserk_hp})}"/>
+                    <p th:utext="#{page.wiki.classes.hp0(${berserk_hp0})}"/>
+                    <p th:utext="#{page.wiki.classes.hp100(${berserk_hp100})}"/>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.mana(${berserk_mana})}"/>
+                    <p th:utext="#{page.wiki.classes.mana0(${berserk_mana0})}"/>
+                    <p th:utext="#{page.wiki.classes.mana100(${berserk_mana100})}"/>
+                </td>
+            </tr>
+        </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" style="border: 0px; table-layout: fixed; width: 100%">
+                <thead>
+                <tr>
+                    <th style="width: 6%" th:text="#{page.wiki.classes.header.icon}"/>
+                    <th style="width: 15%" th:text="#{page.wiki.classes.header.name}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.level}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.mana}"/>
+                    <th style="width: 10%" th:text="#{page.wiki.classes.header.cooldown}"/>
+                    <th style="width: 59%" th:text="#{page.wiki.classes.header.desc}"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="cent"><b th:text="#{page.wiki.classes.skill.passive}"/></td>
+                    <td class="cent" th:text="#{page.wiki.classes.berserk.passive}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_0}"/>
+                    <td class="cent">-</td>
+                    <td class="cent">-</td>
+                    <td class="cent" th:utext="#{page.wiki.classes.berserk.passive.desc(${berserk_passive_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/0.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.heal}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_1}"/>
+                    <td class="cent" th:text="${heal_mana}"/>
+                    <td class="cent" th:text="${heal_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.heal.desc(${heal_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/9.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.berserk.2}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_2}"/>
+                    <td class="cent" th:text="${berserk_2_mana}"/>
+                    <td class="cent" th:text="${berserk_2_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.berserk.2.desc(${berserk_2_0}, ${berserk_2_1})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/8.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.berserk.3}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_3}"/>
+                    <td class="cent" th:text="${berserk_3_mana}"/>
+                    <td class="cent" th:text="${berserk_3_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.berserk.3.desc(${berserk_3_0}, ${berserk_3_1})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/10.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.berserk.4}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_4}"/>
+                    <td class="cent" th:text="${berserk_4_mana}"/>
+                    <td class="cent" th:text="${berserk_4_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.berserk.4.desc(${berserk_4_0}, ${berserk_4_1}, ${berserk_4_2}, ${berserk_4_3})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/7.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.berserk.5}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_5}"/>
+                    <td class="cent" th:text="${berserk_5_mana}"/>
+                    <td class="cent" th:text="${berserk_5_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.berserk.5.desc(${berserk_5_0})}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+
+        <h4 th:text="#{page.wiki.classes.shadowrunner}"/>
+        <hr/>
+        <table style="border: 0px; table-layout: fixed; width: 100%">
+            <tr>
+                <td style="width: 31%"><img src="/res/wiki/classes/shadowrunner.png"
+                                            style="max-width: 100%; max-height: 100%;"/></td>
+                <td style="width: 35%">
+                    <p style="margin: 10px" th:text="#{page.wiki.classes.shadowrunner.desc}"></p>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.hp(${shadowrunner_hp})}"/>
+                    <p th:utext="#{page.wiki.classes.hp0(${shadowrunner_hp0})}"/>
+                    <p th:utext="#{page.wiki.classes.hp100(${shadowrunner_hp100})}"/>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.mana(${shadowrunner_mana})}"/>
+                    <p th:utext="#{page.wiki.classes.mana0(${shadowrunner_mana0})}"/>
+                    <p th:utext="#{page.wiki.classes.mana100(${shadowrunner_mana100})}"/>
+                </td>
+            </tr>
+        </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" style="border: 0px; table-layout: fixed; width: 100%">
+                <thead>
+                <tr>
+                    <th style="width: 6%" th:text="#{page.wiki.classes.header.icon}"/>
+                    <th style="width: 15%" th:text="#{page.wiki.classes.header.name}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.level}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.mana}"/>
+                    <th style="width: 10%" th:text="#{page.wiki.classes.header.cooldown}"/>
+                    <th style="width: 59%" th:text="#{page.wiki.classes.header.desc}"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="cent"><b th:text="#{page.wiki.classes.skill.passive}"/></td>
+                    <td class="cent" th:text="#{page.wiki.classes.shadowrunner.passive}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_0}"/>
+                    <td class="cent">-</td>
+                    <td class="cent">-</td>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.shadowrunner.passive.desc(${shadowrunner_passive_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/0.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.heal}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_1}"/>
+                    <td class="cent" th:text="${heal_mana}"/>
+                    <td class="cent" th:text="${heal_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.heal.desc(${heal_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/12.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.shadowrunner.2}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_2}"/>
+                    <td class="cent" th:text="${shadowrunner_2_mana}"/>
+                    <td class="cent" th:text="${shadowrunner_2_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.shadowrunner.2.desc(${shadowrunner_2_0}, ${shadowrunner_2_1})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/13.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.shadowrunner.3}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_3}"/>
+                    <td class="cent" th:text="${shadowrunner_3_mana}"/>
+                    <td class="cent" th:text="${shadowrunner_3_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.shadowrunner.3.desc(${shadowrunner_3_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/14.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.shadowrunner.4}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_4}"/>
+                    <td class="cent" th:text="${shadowrunner_4_mana}"/>
+                    <td class="cent" th:text="${shadowrunner_4_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.shadowrunner.4.desc(${shadowrunner_4_0}, ${shadowrunner_4_1})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/15.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.shadowrunner.5}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_5}"/>
+                    <td class="cent" th:text="${shadowrunner_5_mana}"/>
+                    <td class="cent" th:text="${shadowrunner_5_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.shadowrunner.5.desc(${shadowrunner_5_0}, ${shadowrunner_5_1}, ${shadowrunner_5_2})}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+
+        <h4 th:text="#{page.wiki.classes.forestrunner}"/>
+        <hr/>
+        <table style="border: 0px; table-layout: fixed; width: 100%">
+            <tr>
+                <td style="width: 31%"><img src="/res/wiki/classes/forestrunner.png"
+                                            style="max-width: 100%; max-height: 100%;"/></td>
+                <td style="width: 35%">
+                    <p style="margin: 10px" th:text="#{page.wiki.classes.forestrunner.desc}"></p>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.hp(${forestrunner_hp})}"/>
+                    <p th:utext="#{page.wiki.classes.hp0(${forestrunner_hp0})}"/>
+                    <p th:utext="#{page.wiki.classes.hp100(${forestrunner_hp100})}"/>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.mana(${forestrunner_mana})}"/>
+                    <p th:utext="#{page.wiki.classes.mana0(${forestrunner_mana0})}"/>
+                    <p th:utext="#{page.wiki.classes.mana100(${forestrunner_mana100})}"/>
+                </td>
+            </tr>
+        </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" style="border: 0px; table-layout: fixed; width: 100%">
+                <thead>
+                <tr>
+                    <th style="width: 6%" th:text="#{page.wiki.classes.header.icon}"/>
+                    <th style="width: 15%" th:text="#{page.wiki.classes.header.name}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.level}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.mana}"/>
+                    <th style="width: 10%" th:text="#{page.wiki.classes.header.cooldown}"/>
+                    <th style="width: 59%" th:text="#{page.wiki.classes.header.desc}"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="cent"><b th:text="#{page.wiki.classes.skill.passive}"/></td>
+                    <td class="cent" th:text="#{page.wiki.classes.forestrunner.passive}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_0}"/>
+                    <td class="cent">-</td>
+                    <td class="cent">-</td>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.forestrunner.passive.desc(${forestrunner_passive_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/0.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.heal}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_1}"/>
+                    <td class="cent" th:text="${heal_mana}"/>
+                    <td class="cent" th:text="${heal_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.heal.desc(${heal_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/19.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.forestrunner.2}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_2}"/>
+                    <td class="cent" th:text="${forestrunner_2_mana}"/>
+                    <td class="cent" th:text="${forestrunner_2_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.forestrunner.2.desc(${forestrunner_2_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/20.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.forestrunner.3}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_3}"/>
+                    <td class="cent" th:text="${forestrunner_3_mana}"/>
+                    <td class="cent" th:text="${forestrunner_3_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.forestrunner.3.desc(${forestrunner_3_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/18.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.forestrunner.4}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_4}"/>
+                    <td class="cent" th:text="${forestrunner_4_mana}"/>
+                    <td class="cent" th:text="${forestrunner_4_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.forestrunner.4.desc(${forestrunner_4_0}, ${forestrunner_4_1}, ${forestrunner_4_2})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/17.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.forestrunner.5}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_5}"/>
+                    <td class="cent" th:text="${forestrunner_5_mana}"/>
+                    <td class="cent" th:text="${forestrunner_5_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.forestrunner.5.desc(${forestrunner_5_0}, ${forestrunner_5_1})}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+
+        <h4 th:text="#{page.wiki.classes.mage}"/>
+        <hr/>
+        <table style="border: 0px; table-layout: fixed; width: 100%">
+            <tr>
+                <td style="width: 31%"><img src="/res/wiki/classes/mage.png"
+                                            style="max-width: 100%; max-height: 100%;"/></td>
+                <td style="width: 35%">
+                    <p style="margin: 10px" th:text="#{page.wiki.classes.mage.desc}"></p>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.hp(${mage_hp})}"/>
+                    <p th:utext="#{page.wiki.classes.hp0(${mage_hp0})}"/>
+                    <p th:utext="#{page.wiki.classes.hp100(${mage_hp100})}"/>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.mana(${mage_mana})}"/>
+                    <p th:utext="#{page.wiki.classes.mana0(${mage_mana0})}"/>
+                    <p th:utext="#{page.wiki.classes.mana100(${mage_mana100})}"/>
+                </td>
+            </tr>
+        </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" style="border: 0px; table-layout: fixed; width: 100%">
+                <thead>
+                <tr>
+                    <th style="width: 6%" th:text="#{page.wiki.classes.header.icon}"/>
+                    <th style="width: 15%" th:text="#{page.wiki.classes.header.name}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.level}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.mana}"/>
+                    <th style="width: 10%" th:text="#{page.wiki.classes.header.cooldown}"/>
+                    <th style="width: 59%" th:text="#{page.wiki.classes.header.desc}"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="cent"><b th:text="#{page.wiki.classes.skill.passive}"/></td>
+                    <td class="cent" th:text="#{page.wiki.classes.mage.passive}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_0}"/>
+                    <td class="cent">-</td>
+                    <td class="cent">-</td>
+                    <td class="cent" th:utext="#{page.wiki.classes.mage.passive.desc(${mage_passive_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/0.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.heal}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_1}"/>
+                    <td class="cent" th:text="${heal_mana}"/>
+                    <td class="cent" th:text="${heal_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.heal.desc(${heal_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/24.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.mage.2}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_2}"/>
+                    <td class="cent" th:text="${mage_2_mana}"/>
+                    <td class="cent" th:text="${mage_2_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.mage.2.desc(${mage_2_0},${mage_2_1},${mage_2_2})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/22.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.mage.3}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_3}"/>
+                    <td class="cent" th:text="${mage_3_mana}"/>
+                    <td class="cent" th:text="${mage_3_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.mage.3.desc(${mage_3_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/23.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.mage.4}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_4}"/>
+                    <td class="cent" th:text="${mage_4_mana}"/>
+                    <td class="cent" th:text="${mage_4_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.mage.4.desc(${mage_4_0}, ${mage_4_1}, ${mage_4_2},${mage_4_3}, ${mage_4_4}, ${mage_4_5})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/25.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.mage.5}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_5}"/>
+                    <td class="cent" th:text="${mage_5_mana}"/>
+                    <td class="cent" th:text="${mage_5_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.mage.5.desc(${mage_5_0}, ${mage_5_1},${mage_5_2}, ${mage_5_3},${mage_5_4})}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+
+        <h4 th:text="#{page.wiki.classes.cleric}"/>
+        <hr/>
+        <table style="border: 0px; table-layout: fixed; width: 100%">
+            <tr>
+                <td style="width: 31%"><img src="/res/wiki/classes/cleric.png"
+                                            style="max-width: 100%; max-height: 100%;"/></td>
+                <td style="width: 35%">
+                    <p style="margin: 10px" th:text="#{page.wiki.classes.cleric.desc}"></p>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.hp(${cleric_hp})}"/>
+                    <p th:utext="#{page.wiki.classes.hp0(${cleric_hp0})}"/>
+                    <p th:utext="#{page.wiki.classes.hp100(${cleric_hp100})}"/>
+                </td>
+                <td style="width: 17%">
+                    <p th:utext="#{page.wiki.classes.mana(${cleric_mana})}"/>
+                    <p th:utext="#{page.wiki.classes.mana0(${cleric_mana0})}"/>
+                    <p th:utext="#{page.wiki.classes.mana100(${cleric_mana100})}"/>
+                </td>
+            </tr>
+        </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" style="border: 0px; table-layout: fixed; width: 100%">
+                <thead>
+                <tr>
+                    <th style="width: 6%" th:text="#{page.wiki.classes.header.icon}"/>
+                    <th style="width: 15%" th:text="#{page.wiki.classes.header.name}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.level}"/>
+                    <th style="width: 5%" th:text="#{page.wiki.classes.header.mana}"/>
+                    <th style="width: 10%" th:text="#{page.wiki.classes.header.cooldown}"/>
+                    <th style="width: 59%" th:text="#{page.wiki.classes.header.desc}"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="cent"><b th:text="#{page.wiki.classes.skill.passive}"/></td>
+                    <td class="cent" th:text="#{page.wiki.classes.cleric.passive}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_0}"/>
+                    <td class="cent">-</td>
+                    <td class="cent">-</td>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.cleric.passive.desc(${cleric_passive_0},${cleric_passive_1},${cleric_passive_2},${cleric_passive_3})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/0.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.heal}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_1}"/>
+                    <td class="cent" th:text="${heal_mana}"/>
+                    <td class="cent" th:text="${heal_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.heal.desc(${heal_0})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/27.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.cleric.2}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_2}"/>
+                    <td class="cent" th:text="${cleric_2_mana}"/>
+                    <td class="cent" th:text="${cleric_2_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.cleric.2.desc(${cleric_2_0},${cleric_2_1})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/28.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.cleric.3}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_3}"/>
+                    <td class="cent" th:text="${cleric_3_mana}"/>
+                    <td class="cent" th:text="${cleric_3_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.cleric.3.desc(${cleric_3_0},${cleric_3_1},${cleric_3_2},${cleric_3_3},${cleric_3_4},${cleric_3_5})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/29.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.cleric.4}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_4}"/>
+                    <td class="cent" th:text="${cleric_4_mana}"/>
+                    <td class="cent" th:text="${cleric_4_cd}"/>
+                    <td class="cent"
+                        th:utext="#{page.wiki.classes.cleric.4.desc(${cleric_4_0}, ${cleric_4_1}, ${cleric_4_2},${cleric_4_3})}"/>
+                </tr>
+                <tr>
+                    <td class="cent"><img src="/res/wiki/skills/30.bmp"
+                                          style="max-width: 100%; max-height: 100%; width: 100%; image-rendering: pixelated;"/>
+                    </td>
+                    <td class="cent" th:text="#{page.wiki.classes.cleric.5}"/>
+                    <td class="cent" th:text="#{page.wiki.classes.level_5}"/>
+                    <td class="cent" th:text="${cleric_5_mana}"/>
+                    <td class="cent" th:text="${cleric_5_cd}"/>
+                    <td class="cent" th:utext="#{page.wiki.classes.cleric.5.desc(${cleric_5_0})}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "arterionclientmod",
+  "name": "Arterion Client Mod",
+  "description": "Custom UIs and functionality for the Arterion.de Minecraft Server",
+  "version": "0.21",
+  "mcversion": "1.8.9",
+  "url": "https://www.arterion.de",
+  "updateUrl": "",
+  "authorList": ["Friwi"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

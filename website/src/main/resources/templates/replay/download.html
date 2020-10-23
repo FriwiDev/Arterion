@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.replay.download.title}"/>
+            <p class="lead" th:text="#{page.replay.download.subtitle}"/>
+            <a class="btn btn-primary my-2" th:href="${downloadLink}" th:text="#{page.replay.download.button}"/>
+        </div>
+        <p th:text="#{page.replay.download.instructions}"/>
+        <ul>
+            <li th:text="#{page.replay.download.instruction1}"/>
+            <li th:text="#{page.replay.download.instruction2}"/>
+            <li th:text="#{page.replay.download.instruction3}"/>
+            <li th:text="#{page.replay.download.instruction4}"/>
+            <li th:text="#{page.replay.download.instruction5}"/>
+        </ul>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <link href="/res/items.css"
+          rel="stylesheet">
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: statsbar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.stats.guild.title(${name})}">Spieler</h1>
+            <p class="lead" th:text="#{page.stats.guild.subtitle}">Subtitel</p>
+        </div>
+        <div class="alert alert-danger" role="alert" th:if="${deleted}!=null" th:text="${deleted}"/>
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.guild.broad}">Allgemein</h4>
+                </div>
+                <div class="card-body">
+                    <table style="border: 0px; text-align: left; width: 100%">
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.broad.name}">Name: </b></td>
+                            <td style="text-align: right" th:text="${name}">Friwi</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.broad.active_since}">Aktiv seit: </b></td>
+                            <td style="text-align: right" th:text="${active_since}">2020-08-14</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.broad.leader}">Aktiv seit: </b></td>
+                            <td style="text-align: right"><a style="color: black"
+                                                             th:href="'/stats/player/' + ${leader.getUuid()}"
+                                                             th:text="${leader.getName()}"/></td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.broad.play_time}">Spielzeit: </b></td>
+                            <td style="text-align: right" th:text="${play_time}">10d 3h 45m</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.broad.vault}">Spielzeit: </b></td>
+                            <td style="text-align: right" th:text="${vault}">10d 3h 45m</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.guild.progress}">Fortschritt</h4>
+                </div>
+                <div class="card-body">
+                    <table style="border: 0px; text-align: left; width: 100%">
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.progress.vault}">Klasse: </b></td>
+                            <td style="text-align: right" th:text="${vault_prog}">Schattenläufer</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.progress.officer}">Stufe: </b></td>
+                            <td style="text-align: right" th:text="${officer_prog}">100 (Prestige 20)</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.progress.claim}">XP verdient: </b></td>
+                            <td style="text-align: right" th:text="${claim_prog}">67843276</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.progress.kills}">XP verdient: </b></td>
+                            <td style="text-align: right" th:text="${kills_prog}">67843276</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.guild.fightstats}">Kampf-Statistiken</h4>
+                </div>
+                <div class="card-body">
+                    <table style="border: 0px; text-align: left; width: 100%">
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.fightstats.kills}">Kills: </b></td>
+                            <td style="text-align: right" th:text="${kills}">10</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.fightstats.deaths}">Tode: </b></td>
+                            <td style="text-align: right" th:text="${deaths}">2</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.fightstats.kd}">K/D: </b></td>
+                            <td style="text-align: right" th:text="${kd}">5</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.fightstats.gfight_offense}">Schaden an Spielern: </b>
+                            </td>
+                            <td style="text-align: right" th:text="${gfight_offense}">123243</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.fightstats.gfight_defense}">Schaden an
+                                Tieren/Monstern: </b></td>
+                            <td style="text-align: right" th:text="${gfight_defense}">123243</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.fightstats.caps}">Schaden erhalten: </b></td>
+                            <td style="text-align: right" th:text="${caps}">123243</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.guild.fightstats.artefact_hours}">Gewirkte Heilung: </b></td>
+                            <td style="text-align: right" th:text="${artefact_hours}">123243</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.guild.title.players}">Weitere
+                        Statistiken</h4>
+                </div>
+                <div class="card-body">
+                    <p><b th:text="#{page.stats.guild.title.players.leader}"/></p>
+                    <ul style="list-style-type: none; padding: 0px">
+                        <li><a style="color: black" th:href="'/stats/player/' + ${leader.getUuid()}"
+                               th:text="${leader.getName()}"></a></li>
+                    </ul>
+                    <p><b th:text="#{page.stats.guild.title.players.officers}"/></p>
+                    <ul style="list-style-type: none; padding: 0px">
+                        <li style="color: gray" th:if="${officers.isEmpty()}"
+                            th:text="#{page.stats.guild.title.players.noofficers}"></li>
+                        <li th:each="member : ${officers}"><a style="color: black"
+                                                              th:href="'/stats/player/' + ${member.getUuid()}"
+                                                              th:text="${member.getName()}"></a></li>
+                    </ul>
+                    <p><b th:text="#{page.stats.guild.title.players.members}"/></p>
+                    <ul style="list-style-type: none; padding: 0px">
+                        <li style="color: gray" th:if="${members.isEmpty()}"
+                            th:text="#{page.stats.guild.title.players.nomembers}"></li>
+                        <li th:each="member : ${members}"><a style="color: black"
+                                                             th:href="'/stats/player/' + ${member.getUuid()}"
+                                                             th:text="${member.getName()}"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.guild.title.fights}">Teilgenommene
+                        Kämpfe</h4>
+                </div>
+                <div class="nav-scroller bg-white shadow-sm">
+                    <div style="justify-content: center; margin: 0; padding: 0; display: flex">
+                        <nav class="nav nav-underline"
+                             th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                            <a class="nav-link"
+                               th:classappend="${fights.equals('guild_fights') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('fights', 'guild_fights').replaceQueryParam('page', '1').toUriString()}"
+                               th:text="#{nav.stats.guild_fights_short}">Gilden</a>
+                            <a class="nav-link"
+                               th:classappend="${fights.equals('artefact_fights') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('fights', 'artefact_fights').replaceQueryParam('page', '1').toUriString()}"
+                               th:text="#{nav.stats.artefact_fights_short}">Artefakt</a>
+                            <a class="nav-link"
+                               th:classappend="${fights.equals('capture_point_fights') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('fights', 'capture_point_fights').replaceQueryParam('page', '1').toUriString()}"
+                               th:text="#{nav.stats.capture_point_fights_short}">Eroberung</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                            <tr th:with="base='page.stats.guild.fights.header'">
+                                <th>#</th>
+                                <th th:replace="fragments :: statheader(key='time')"/>
+                                <th th:replace="fragments :: statheader(key='text')"/>
+                                <th th:replace="fragments :: statheader(key='win')"/>
+                            </tr>
+                            </thead>
+                            <tbody th:replace="fragments :: statbody"/>
+                        </table>
+                    </div>
+                    <nav th:replace="fragments :: pagination"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

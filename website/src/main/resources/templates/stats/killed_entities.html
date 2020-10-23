@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <link href="/res/items.css"
+          rel="stylesheet">
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: statsbar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.stats.killed_entities.title}"/>
+            <p class="lead" th:text="#{page.stats.killed_entities.subtitle}"/>
+        </div>
+        <form th:replace="fragments :: statsearch"/>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr th:with="base='page.stats.killed_entities.header'">
+                    <th>#</th>
+                    <th th:replace="fragments :: statheader(key='id')"/>
+                    <th th:replace="fragments :: statheader(key='img')"/>
+                    <th th:replace="fragments :: statheader(key='name')"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${content.isEmpty()}">
+                    <td colspan="42" style="color: #AAAAAA; text-align: center" th:text="#{page.stats.noentries}"></td>
+                </tr>
+                <tr th:each="entry : ${content}">
+                    <td><a style="color: black" th:href="${entry.link}" th:text="${entry.number}"/></td>
+                    <td><a style="color: black" th:href="${entry.link}" th:text="${entry.getContent()[0]}"/></td>
+                    <td><a style="color: black; display: block" th:classappend="${entry.getContent()[1]}"
+                           th:href="${entry.link}"/></td>
+                    <td><a style="color: black" th:href="${entry.link}" th:text="${entry.getContent()[2]}"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <nav th:replace="fragments :: pagination"/>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>

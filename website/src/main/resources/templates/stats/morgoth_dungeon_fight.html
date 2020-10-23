@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments :: bootstrap-style"/>
+    <div th:replace="fragments :: chartjs"/>
+    <link href="/res/items.css"
+          rel="stylesheet">
+    <title>Arterion.de</title>
+</head>
+<body>
+<nav th:replace="fragments :: header"/>
+
+<main role="main">
+    <div th:replace="fragments :: statsbar"/>
+    <div class="container">
+        <div class="server-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4" th:text="#{page.stats.morgoth_dungeon_fight.title}">Spieler</h1>
+            <p class="lead" th:text="${vsstr}">Subtitel</p>
+            <a class="btn btn-primary my-2" style="position: absolute; top: 117px; right: 10px;" th:href="${replaydl}"
+               th:if="${replaydl}!=null" th:text="#{page.stats.fight.replaydl}"/>
+        </div>
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.morgoth_dungeon_fight.broad}">
+                        Allgemein</h4>
+                </div>
+                <div class="card-body">
+                    <table style="border: 0px; text-align: left; width: 100%">
+                        <tr>
+                            <td><b th:text="#{page.stats.morgoth_dungeon_fight.broad.begin}">Name: </b></td>
+                            <td style="text-align: right" th:text="${begin}">Friwi</td>
+                        </tr>
+                        <tr th:if="${winner}!=null">
+                            <td><b th:text="#{page.stats.morgoth_dungeon_fight.broad.winner}">Aktiv seit: </b></td>
+                            <td style="text-align: right" th:utext="${winner}">2020-08-14</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.morgoth_dungeon_fight.broad.duration}">Aktiv seit: </b></td>
+                            <td style="text-align: right" th:text="${duration}">2020-08-14</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.morgoth_dungeon_fight.teams}">Teams</h4>
+                </div>
+                <div class="card-body">
+                    <table style="border: 0px; text-align: left; width: 100%">
+                        <tr>
+                            <td><b th:text="#{page.stats.morgoth_dungeon_fight.team_one}">Klasse: </b></td>
+                            <td style="text-align: right" th:utext="${team_one}">Schattenläufer</td>
+                        </tr>
+                        <tr>
+                            <td><b th:text="#{page.stats.morgoth_dungeon_fight.team_two}">Klasse: </b></td>
+                            <td style="text-align: right" th:text="#{page.stats.morgoth_dungeon_fight.team_morgoth}">
+                                Schattenläufer
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal" th:text="#{page.stats.morgoth_dungeon_fight.stat_details}">
+                        Details</h4>
+                </div>
+                <div class="nav-scroller bg-white shadow-sm">
+                    <div style="justify-content: left; margin: 0; padding: 0; display: flex">
+                        <nav class="nav nav-underline"
+                             th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                            <a class="nav-link"
+                               th:classappend="${detailstat.equals('damage_dealt_mobs') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('detailstat', 'damage_dealt_mobs').toUriString()}"
+                               th:text="#{chart.stat.damage_dealt_mobs}">Kills</a>
+                            <a class="nav-link"
+                               th:classappend="${detailstat.equals('damage_received') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('detailstat', 'damage_received').toUriString()}"
+                               th:text="#{chart.stat.damage_received}">Kills</a>
+                            <a class="nav-link"
+                               th:classappend="${detailstat.equals('heal') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('detailstat', 'heal').toUriString()}"
+                               th:text="#{chart.stat.heal}">Kills</a>
+                            <a class="nav-link"
+                               th:classappend="${detailstat.equals('mob_kills') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('detailstat', 'mob_kills').toUriString()}"
+                               th:text="#{chart.stat.mob_kills}">Kills</a>
+                            <a class="nav-link"
+                               th:classappend="${detailstat.equals('deaths') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('detailstat', 'deaths').toUriString()}"
+                               th:text="#{chart.stat.deaths}">Kills</a>
+                            <a class="nav-link"
+                               th:classappend="${detailstat.equals('hits') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('detailstat', 'hits').toUriString()}"
+                               th:text="#{chart.stat.hits}">Kills</a>
+                            <a class="nav-link"
+                               th:classappend="${detailstat.equals('clicks') ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('detailstat', 'clicks').toUriString()}"
+                               th:text="#{chart.stat.clicks}">Kills</a>
+                        </nav>
+                        <nav class="nav nav-underline ml-auto"
+                             th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                            <a class="nav-link"
+                               th:classappend="${timedependent.equals(false) ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('timedependent', 'false').toUriString()}"
+                               th:text="#{page.stats.fight.sum}">Summe</a>
+                            <a class="nav-link"
+                               th:classappend="${timedependent.equals(true) ? 'active':''}"
+                               th:href="${urlBuilder.replaceQueryParam('timedependent', 'true').toUriString()}"
+                               th:text="#{page.stats.fight.time}">Verlauf</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div th:each="chart : ${charts}">
+                        <p><h4 th:text="${chart[0]}"/></p>
+                        <p th:if="${chart[1]} != null" th:utext="${chart[1]}"/>
+                        <p style="color: gray" th:if="${chart[1]} == null"
+                           th:text="#{page.stats.morgoth_dungeon_fight.stat_details.nodata}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="fragments :: footer"/>
+<div th:replace="fragments :: bootstrap-script"/>
+</body>
+</html>
