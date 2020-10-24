@@ -1,0 +1,92 @@
+package me.friwi.arterion.client;
+
+import java.util.List;
+
+import me.friwi.arterion.client.data.FriendlyPlayerList;
+import me.friwi.arterion.client.data.ModValueEnum;
+import me.friwi.arterion.client.gui.ChatModifier;
+import me.friwi.arterion.client.gui.ChestMenuModifier;
+import me.friwi.arterion.client.gui.util.HeadCacheUtil;
+import me.friwi.arterion.client.labymod.EnumLabyGuiScale;
+import me.friwi.arterion.client.labymod.LabymodIngameGuiHandler;
+import me.friwi.arterion.client.labymod.LabymodPluginMessageListener;
+import me.friwi.arterion.client.network.client.ModConnection;
+import me.friwi.arterion.client.network.client.PacketListenerClient;
+import me.friwi.arterion.client.network.packet.Packet01ModVersion;
+import net.labymod.api.LabyModAddon;
+import net.labymod.gui.elements.DropDownMenu;
+import net.labymod.main.LabyMod;
+import net.labymod.main.lang.LanguageManager;
+import net.labymod.settings.elements.DropDownElement;
+import net.labymod.settings.elements.SettingsElement;
+import net.labymod.utils.Consumer;
+
+public class LabyAddon extends LabyModAddon {
+	/**
+	 * Called when the addon gets enabled
+	 */
+	@Override
+	public void onEnable() {
+		ArterionClientMod.IS_LABY = true;
+		getApi().registerForgeListener(new LabymodIngameGuiHandler());
+		getApi().registerForgeListener(new ChestMenuModifier());
+		getApi().registerForgeListener(new ChatModifier());
+		new ModConnection(new PacketListenerClient());
+		HeadCacheUtil.startWorkerThread();
+		getApi().getEventManager().registerOnJoin(data -> {
+			ModValueEnum.IS_ARTERION.setValue(0);
+			FriendlyPlayerList.clear();
+			ModConnection.sendPacket(new Packet01ModVersion(ModConnection.PROTOCOL_VERSION));
+		});
+		getApi().getEventManager().registerOnQuit(data -> {
+			ModValueEnum.IS_ARTERION.setValue(0);
+		});
+		getApi().getEventManager().register(new LabymodPluginMessageListener());
+	}
+
+	/**
+	 * Called when the addon gets disabled
+	 */
+	@Override
+	public void onDisable() {
+
+	}
+
+	/**
+	 * Called when this addon's config was loaded and is ready to use
+	 */
+	@Override
+	public void loadConfig() {
+		ArterionModConfig.setGuiScaleWithoutSaving(getConfig().has( "guiScale" ) ? getConfig().get( "guiScale" ).getAsInt() : EnumLabyGuiScale.NORMAL.ordinal());
+	}
+
+	/**
+	 * Called when the addon's ingame settings should be filled
+	 *
+	 * @param subSettings a list containing the addon's settings' elements
+	 */
+	@Override
+	protected void fillSettings(List<SettingsElement> subSettings) {
+		//Gui scale
+		final DropDownMenu<EnumLabyGuiScale> alignmentDropDownMenu = new DropDownMenu<EnumLabyGuiScale>(
+				"Gui Scale" /* Display name */, 0, 0, 0, 0).fill(EnumLabyGuiScale.values());
+		DropDownElement<EnumLabyGuiScale> alignmentDropDown = new DropDownElement<EnumLabyGuiScale>(
+				"Gui Scale", alignmentDropDownMenu);
+
+		// Set selected entry
+		alignmentDropDownMenu.setSelected(EnumLabyGuiScale.values()[ArterionModConfig.getGuiScale()]);
+
+		// Listen on changes
+		alignmentDropDown.setChangeListener(new Consumer<EnumLabyGuiScale>() {
+			@Override
+			public void accept(EnumLabyGuiScale scale) {
+				ArterionModConfig.setGuiScaleWithoutSaving(scale.ordinal());
+				System.out.println("New selected scale: " + scale.name());
+			}
+		});
+
+		// Add to sublist
+		subSettings.add(alignmentDropDown);
+	}
+
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="net.minecraft.util.StringUtils"/>
+<fullyQualifiedTypeName name="net.minecraft.block.material.Material"/>
+<fullyQualifiedTypeName name="org.apache.commons.lang3.StringUtils"/>
+<fullyQualifiedTypeName name="net.minecraft.nbt.NBTTagCompound"/>
+<fullyQualifiedTypeName name="com.mojang.authlib.properties.Property"/>
+<fullyQualifiedTypeName name="me.friwi.arterion.client.data.FriendlyPlayerList"/>
+<fullyQualifiedTypeName name="me.friwi.arterion.client.gui.util.HeadCacheUtil"/>
+<fullyQualifiedTypeName name="java.util.Comparator"/>
+<fullyQualifiedTypeName name="me.friwi.arterion.client.ClassEnum"/>
+<fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
+<fullyQualifiedTypeName name="net.minecraft.stats.Achievement"/>
+<fullyQualifiedTypeName name="me.friwi.arterion.client.network.packet.Packet09Killfeed"/>
+<fullyQualifiedTypeName name="net.minecraft.init.Items"/>
+<fullyQualifiedTypeName name="net.minecraft.item.Item"/>
+<fullyQualifiedTypeName name="net.minecraft.block.Block"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="net.minecraft.util.ResourceLocation"/>
+<fullyQualifiedTypeName name="me.friwi.arterion.client.data.KillFeedList"/>
+<fullyQualifiedTypeName name="net.minecraftforge.client.event.GuiScreenEvent"/>
+<fullyQualifiedTypeName name="net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent"/>
+<fullyQualifiedTypeName name="me.friwi.arterion.client.gui.util.TooltipPainter"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="net.labymod.servermanager.Server"/>
+<fullyQualifiedTypeName name="net.labymod.utils.Material"/>
+<fullyQualifiedTypeName name="net.labymod.utils.ServerData"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="net.minecraft.client.multiplayer.ServerData"/>
+<fullyQualifiedTypeName name="net.labymod.api.events.PluginMessageEvent"/>
+<fullyQualifiedTypeName name="me.friwi.arterion.client.labymod.LabymodIngameGuiHandler"/>
+<fullyQualifiedTypeName name="me.friwi.arterion.client.data.ModValueEnum"/>
+<fullyQualifiedTypeName name="scala.actors.threadpool.Arrays"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.function.Consumer"/>
+<fullyQualifiedTypeName name="net.labymod.main.lang.LanguageManager"/>
+<fullyQualifiedTypeName name="net.labymod.utils.Consumer"/>
+<fullyQualifiedTypeName name="me.friwi.arterion.client.labymod.LabyKeybinds"/>
+<fullyQualifiedTypeName name="net.labymod.main.LabyMod"/>
+<fullyQualifiedTypeName name="net.minecraft.client.gui.GuiNewChat"/>
+<fullyQualifiedTypeName name="net.minecraft.client.gui.GuiIngame"/>
+<fullyQualifiedTypeName name="net.minecraft.network.play.client.C0DPacketCloseWindow"/>
+<fullyQualifiedTypeName name="org.lwjgl.input.Keyboard"/>
+</qualifiedTypeNameHistroy>

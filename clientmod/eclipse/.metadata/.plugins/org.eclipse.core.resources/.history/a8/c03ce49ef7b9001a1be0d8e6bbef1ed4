@@ -1,0 +1,8 @@
+package me.friwi.arterion.client.labymod;
+
+public class LabyKeybinds {
+	public static String getLabyKeybind(int slot, String skillName) {
+		
+		return null;
+	}
+}

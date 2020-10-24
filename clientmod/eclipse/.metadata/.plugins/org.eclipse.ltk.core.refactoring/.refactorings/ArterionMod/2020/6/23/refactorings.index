@@ -1,0 +1,48 @@
+1591196223589	Copy compilation unit
+1591196443833	Rename type 'NewConnectionHandler'
+1591196548039	Move compilation units
+1591196575704	Move compilation unit
+1591196801659	Move compilation unit
+1591199103987	Move compilation unit
+1591199637828	Rename type 'PacketHandler'
+1591199862379	Delete elements
+1591217476033	Delete elements
+1591217600312	Delete element
+1591218496893	Rename type 'SkillBarGui'
+1591220289158	Move compilation units
+1591223901519	Rename package 'net.friwi.minimap'
+1591224523728	Rename type 'EthyronMinimap'
+1591224537033	Rename type 'EthyronMinimapValues'
+1591228317025	Delete element
+1591230912010	Copy compilation unit
+1591262623130	Delete elements
+1591262835492	Rename field 'skillBar'
+1591264494900	Delete elements
+1591264520848	Delete element
+1591264884848	Delete element
+1591264912845	Delete element
+1591264925896	Delete element
+1591265418250	Delete element
+1591265472656	Delete element
+1591268663472	Move file
+1591348425779	Move compilation unit
+1591352006108	Rename field 'commandTextField'
+1591358625008	Copy compilation unit
+1591358744773	Copy compilation unit
+1591359790808	Rename type 'ContainerMenuModifier'
+1591359802507	Rename type 'ContainerMenuGui'
+1591366806884	Delete elements
+1591388720458	Delete element
+1591396686289	Delete element
+1591396689403	Delete element
+1591396705475	Delete element
+1591399778366	Copy compilation unit
+1591399794142	Rename type 'TextGui'
+1591401734349	Delete elements
+1591401742210	Delete element
+1591401746710	Delete elements
+1591438262023	Rename type 'TopGui'
+1591448081349	Delete element
+1591567304933	Delete element
+1591567307042	Copy compilation unit
+1591567319926	Rename type 'KeybindManager'

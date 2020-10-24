@@ -1,0 +1,12 @@
+package me.friwi.arterion.client.labymod;
+
+import net.labymod.main.LabyMod;
+
+public class LabyKeybinds {
+	public static String getLabyKeybind(int slot, String skillName) {
+		for(Object keybind : LabyMod.getInstance().getChatToolManager().getAutoTextKeyBinds()) {
+			
+		}
+		return null;
+	}
+}

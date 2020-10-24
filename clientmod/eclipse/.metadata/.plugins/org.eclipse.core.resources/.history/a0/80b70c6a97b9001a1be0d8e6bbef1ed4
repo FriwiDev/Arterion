@@ -1,0 +1,114 @@
+package me.friwi.arterion.client.network.client;
+
+import java.util.Collections;
+import java.util.List;
+
+import com.google.gson.JsonObject;
+
+import net.labymod.api.events.TabListEvent;
+import net.labymod.ingamegui.moduletypes.ColoredTextModule;
+import net.labymod.servermanager.ChatDisplayAction;
+import net.labymod.servermanager.Server;
+import net.labymod.servermanager.Server.DisplayLine;
+import net.labymod.settings.elements.BooleanElement;
+import net.labymod.settings.elements.ControlElement;
+import net.labymod.settings.elements.SettingsElement;
+import net.labymod.utils.Material;
+import net.minecraft.client.multiplayer.ServerData;
+import net.minecraft.network.PacketBuffer;
+
+public class LabymodServerSupport extends Server {
+
+    public LabymodServerSupport() {
+        super( "arterion", "arterion.de", "test.arterion.de", "play.arterion.de", "mc.arterion.de");
+    }
+
+    /**
+     * Called when the client joins the server
+     *
+     * @param serverData the server-data
+     */
+    @Override
+    public void onJoin( ServerData serverData ) {
+
+    }
+
+    /**
+     * This method will be called when the client receives a chat message from this server
+     *
+     * @param clean     message without color codes
+     * @param formatted message with color codes
+     * @return how the chat should handle this message - should the message show up on the other chat or should it be hidden?
+     */
+    @Override
+    public ChatDisplayAction handleChatMessage( String clean, String formatted ) throws Exception {
+        return ChatDisplayAction.NORMAL;
+    }
+
+    /**
+     * This method will be called when the client receives a plugin message from this server
+     *
+     * @param channelName  plugin message channel name
+     * @param packetBuffer the message's content
+     * @throws Exception
+     */
+    @Override
+    public void handlePluginMessage( String channelName, PacketBuffer packetBuffer ) throws Exception {
+        if ( channelName.equals( "TEST_wins" ) ) {
+            wins = packetBuffer.readInt();
+        }
+    }
+
+    /**
+     * Called when the tablist header or footer gets updated on this server
+     *
+     * @param tabInfoType     header or footer
+     * @param formattedText   message with color codes
+     * @param unformattedText clean message without color codes
+     * @throws Exception
+     */
+    @Override
+    public void handleTabInfoMessage( TabListEvent.Type tabInfoType, String formattedText, String unformattedText ) throws Exception {
+
+    }
+
+    /**
+     * Called when the server's config gets initialized
+     *
+     * @param config the config's JsonObject
+     */
+    @Override
+    protected void initConfig( JsonObject config ) {
+        super.initConfig( config );
+
+        this.displayElo = config.get( "displayElo" ).getAsBoolean();
+        this.displayWins = config.get( "displayWins" ).getAsBoolean();
+    }
+
+    /**
+     * Called after the server has been added - those settings will be added to the addon's settings
+     *
+     * @param subSettings the addon's sub settings
+     */
+    @Override
+    public void fillSubSettings( List<SettingsElement> subSettings ) {
+        subSettings.add( new BooleanElement( "Display Elo", this, new ControlElement.IconData( Material.DIAMOND_SWORD ), "displayElo" ) );
+        subSettings.add( new BooleanElement( "Display Wins", this, new ControlElement.IconData( Material.DIAMOND_SWORD ), "displayWins" ) );
+    }
+
+    /**
+     * This method can be used to add lines to the ServerSupport module
+     *
+     * @param lines the list you can add your custom lines to
+     */
+    @Override
+    public void addModuleLines( List<DisplayLine> lines ) {
+        if ( displayElo )
+            lines.add( new DisplayLine( "Elo", Collections.singletonList( ColoredTextModule.Text.getText( String.valueOf( elo ) ) ) ) );
+
+        if ( displayWins )
+            lines.add( new DisplayLine( "Wins", Collections.singletonList( ColoredTextModule.Text.getText( String.valueOf( wins ) ) ) ) );
+
+        super.addModuleLines( lines );
+    }
+}

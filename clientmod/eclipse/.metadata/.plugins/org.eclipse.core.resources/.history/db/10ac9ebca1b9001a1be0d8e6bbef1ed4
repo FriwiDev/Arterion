@@ -1,0 +1,22 @@
+package me.friwi.arterion.client.labymod;
+
+import me.friwi.arterion.client.network.client.ModConnection;
+import net.labymod.api.events.PluginMessageEvent;
+import net.labymod.main.listeners.PluginMessageListener;
+import net.minecraft.network.PacketBuffer;
+
+public class LabymodPluginMessageListener implements PluginMessageEvent {
+
+	@Override
+	public void receiveMessage(String channelName, PacketBuffer packetBuffer) {
+		System.out.println("MSG "+channelName);
+		if ( channelName.equals( ModConnection.CHANNEL_NAME ) ) {
+            byte id = packetBuffer.readByte();
+            byte[] data = new byte[packetBuffer.readableBytes()];
+            System.out.println("MSG "+id+" "+packetBuffer.readableBytes());
+            packetBuffer.readBytes(data);
+            ModConnection.receivePacket(id, data);
+        }
+	}
+
+}

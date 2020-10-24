@@ -1,0 +1,7 @@
+package me.friwi.arterion.client.labymod;
+
+import net.labymod.main.listeners.PluginMessageListener;
+
+public class LabymodPluginMessageListener extends PluginMessageListener {
+
+}
